@@ -1,14 +1,26 @@
 <div class="main-container">
-  <header class="header">
-      <h1>{{ title }}</h1>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@600&display=swap" rel="stylesheet">
+  <header class="header header-6">
+    <div class="company-logo"></div>
+    <span class="main-title">{{ title }}</span>
   </header>
   <div class="content-container">
-      <clr-vertical-nav>
-        
-        <a clrVerticalNavLink routerLink="./charmander" routerLinkActive="active">Charmander</a>
-      </clr-vertical-nav>
-      <div class="content-area">
-          <router-outlet></router-outlet>
-      </div>
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+    <clr-vertical-nav [clrVerticalNavCollapsible]="true" [clrVerticalNavCollapsed]="true">
+      <a clrVerticalNavLink routerLink="./normal" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="search"></clr-icon>
+        Search
+      </a>
+      <a clrVerticalNavLink routerLink="./electric" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="dollar-bill"></clr-icon>
+        Popular Stocks
+      </a>
+      <a clrVerticalNavLink routerLink="./electric" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="employee-group"></clr-icon>
+        Sectors
+      </a>
+    </clr-vertical-nav>
   </div>
 </div>

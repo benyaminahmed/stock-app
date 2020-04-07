@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Stock App';
-  subHeading = 'Your all in one tikr finder!'
+  title = 'NEXUS';
+  subHeading = 'Your all in one tikr finder!';
 }

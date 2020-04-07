@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+.company-logo {
+    background-image: url('/assets/img/logo.png');
+    width: 36px;
+    height: 36px;
+    background-size: contain;
+    margin-top: 10px;
+    margin-left: 8px;
+}

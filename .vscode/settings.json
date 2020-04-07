@@ -1,0 +1,16 @@
+{
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "editor.formatOnSave": true,
+  "html.format.indentInnerHtml": true,
+  "html.format.wrapAttributes": "aligned-multiple",
+  "typescriptHero.imports.organizeOnSave": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "search.exclude": {
+    "**/.vscode": true,
+    "**/dist": true,
+    "**/node_modules": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.tslint": true
+  }
+}
