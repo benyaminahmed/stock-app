@@ -2,13 +2,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@600&display=swap" rel="stylesheet">
   <header class="header">
     <div class="company-logo"></div>
-    <span class="main-title">{{ title }}</span>
   </header>
   <div class="content-container">
     <div class="content-area">
       <router-outlet></router-outlet>
     </div>
     <clr-vertical-nav [clrVerticalNavCollapsible]="true" [clrVerticalNavCollapsed]="true">
+      <a clrVerticalNavLink routerLink="./home" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="home"></clr-icon>
+        Home
+      </a>
       <a clrVerticalNavLink routerLink="./normal" routerLinkActive="active">
         <clr-icon clrVerticalNavIcon shape="search"></clr-icon>
         Search
@@ -20,6 +23,10 @@
       <a clrVerticalNavLink routerLink="./electric" routerLinkActive="active">
         <clr-icon clrVerticalNavIcon shape="employee-group"></clr-icon>
         Sectors
+      </a>
+      <a clrVerticalNavLink routerLink="./electric" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="user"></clr-icon>
+        Account
       </a>
     </clr-vertical-nav>
   </div>

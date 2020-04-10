@@ -1,12 +1,15 @@
+@import 'colours';
+
 :root {
     --clr-header-bg-color: #01A9DB;
 }
 
 .company-logo {
     background-image: url('/assets/img/logo.png');
-    width: 36px;
-    height: 36px;
+    width: 100px;
+    height: 35px;
+    margin-top: 12px;
+    margin-left: 6px;
     background-size: contain;
-    margin-top: 10px;
-    margin-left: 8px;
+    background-repeat: no-repeat;
 }
