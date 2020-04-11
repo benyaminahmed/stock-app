@@ -1,0 +1,34 @@
+<div class="card">
+    <div shape="arrow" class="card-header">
+        MICROSOFT CORPORATION
+    </div>
+    <div class="card-block">
+        <div class="card-title">
+            NASDAQ MSFT : $165.14
+        </div>
+        <div class="card-text">
+            <clr-icon class="up-arrow" shape="arrow"></clr-icon>
+            +0.0100%
+        </div>
+        <div #charts></div>
+    </div>
+    <div class="card-footer">
+        <clr-dropdown>
+            <button class="btn btn-outline-primary" clrDropdownTrigger>
+                Time Frame
+                <clr-icon shape="caret down"></clr-icon>
+            </button>
+            <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
+                <label class="dropdown-header" aria-hidden="true">Time Frame:</label>
+                <div aria-label="Dropdown header Action 1" clrDropdownItem>1 Day</div>
+                <div aria-label="Dropdown header Action 1" clrDropdownItem>7 Day</div>
+                <div aria-label="Dropdown header Action 1" clrDropdownItem>1 Month</div>
+                <div aria-label="Dropdown header Action 1" clrDropdownItem>MAX</div>
+            </clr-dropdown-menu>
+        </clr-dropdown>
+        <button class="btn btn-sm btn-link">
+            <clr-icon class="star-shape" [class.selected]="starSelected" shape="star" (click)="onClickStarIcon()">
+            </clr-icon>
+        </button>
+    </div>
+</div>

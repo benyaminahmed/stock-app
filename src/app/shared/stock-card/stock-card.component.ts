@@ -1,17 +1,16 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import * as Highcharts from 'highcharts';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 
-import { HighchartsService } from '../shared/services/highcharts.service';
-
-const More = require('highcharts/highcharts-more');
-More(Highcharts);
+import { Stock } from '../models/stock';
+import { HighchartsService } from '../services/highcharts.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-stock-card',
+  templateUrl: './stock-card.component.html',
+  styleUrls: ['./stock-card.component.scss']
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class StockCardComponent implements OnInit {
+
+  @Input() stock: Stock;
 
   @ViewChild('charts') public chartEl: ElementRef;
 
@@ -61,6 +60,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
   }
 
+  // tslint:disable-next-line: use-lifecycle-interface
   ngAfterViewInit(): void {
     this.highcharts.createChart(this.chartEl.nativeElement, this.chartOptions);
   }
@@ -68,6 +68,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   onClickStarIcon(): void {
     this.starSelected = !this.starSelected;
   }
+
+
+
 }
-
-
