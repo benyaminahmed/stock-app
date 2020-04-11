@@ -34,14 +34,19 @@ export class HomeComponent implements OnInit, AfterViewInit {
         label: {
           connectorAllowed: false
         },
-        pointStart: 2014
+        pointStart: 830
       }
     },
     series: [{
       name: '',
       data: []
     }],
-
+    xAxis: {
+      type: 'datetime',
+      dateTimeLabelFormats: {
+        hour: '%H:%M'
+      }
+    },
     responsive: {
       rules: [{
         condition: {
@@ -53,11 +58,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   constructor(private highcharts: HighchartsService) { }
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.loading = false;
 
-    for (let i = 0; i < 50; i++) {
-      this.chartOptions.series[0].data.push(Math.floor(Math.random() * 160) + 170);
+    let h = 8;
+
+    for (let i = 0; i < 12; i++) {
+      const y = Math.floor(Math.random() * 160) + 170;
+      this.chartOptions.series[0].data.push([Date.UTC(2020, 2, 3, h), y]);
+
+      h++;
     }
   }
 
