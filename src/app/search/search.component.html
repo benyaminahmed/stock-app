@@ -1,1 +1,6 @@
-<p>search is a failure</p>
+<app-title title="Search"></app-title>
+- {{searchInput}}
+<form clrForm [formGroup]="searchForm">
+    <input class="search-bar" clrInput placeholder="Find your stock..." (change)="onChangeSearch($event)"
+           formControlName="searchCtrl" />
+</form>
