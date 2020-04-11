@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { map } from 'rxjs/operators';
+
+import { AlphaVantageService } from '../shared/services/alpha-vantage.service';
 
 @Component({
   selector: 'app-search',
@@ -11,15 +14,23 @@ export class SearchComponent implements OnInit {
   searchInput: string;
   searchForm: FormGroup;
 
-  ngOnInit(): void {
+  constructor(private alphaVantageSvc: AlphaVantageService) {
+  }
 
+  ngOnInit(): void {
     this.searchForm = new FormGroup({
       searchCtrl: new FormControl('')
     });
   }
 
-  onChangeSearch(event) {
-    this.searchInput = event.currentTarget.value;
+  onChangeSearchInput(e) {
+    this.searchInput = e.currentTarget.value;
+    this.alphaVantageSvc
+      .getInstruments(this.searchInput)
+      .pipe(
+        map(res => {
+          console.log(res);
+        }))
+      .subscribe();
   }
-
 }
