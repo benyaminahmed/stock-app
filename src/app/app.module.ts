@@ -11,9 +11,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
-import { SpinnerComponent } from './shared/spinner/spinner.component';
-import { StockCardComponent } from './shared/stock-card/stock-card.component';
-import { TitleComponent } from './shared/title/title.component';
+import { SpinnerComponent } from './shared/components/spinner/spinner.component';
+import { StockCardComponent } from './shared/components/stock-card/stock-card.component';
+import { TitleComponent } from './shared/components/title/title.component';
 
 @NgModule({
   declarations: [

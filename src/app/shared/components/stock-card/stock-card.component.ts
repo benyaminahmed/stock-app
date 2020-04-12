@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 
-import { Stock } from '../models/stock';
-import { HighchartsService } from '../services/highcharts.service';
+import { Stock } from '../../models/stock';
+import { HighchartsService } from '../../services/highcharts.service';
 
 @Component({
   selector: 'app-stock-card',
