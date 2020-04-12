@@ -1,0 +1,7 @@
+<div *ngIf="stockPrices">- {{searchInput}}</div>
+<form clrForm [formGroup]="searchForm">
+    <input class="search-bar" clrInput placeholder="Enter a ticker..." (change)="onChangeSearchInput($event)"
+           formControlName="searchCtrl" />
+</form>
+
+<app-spinner [loading]="loading"></app-spinner>

@@ -12,7 +12,7 @@ export class AlphaVantageService {
 
   rootUrl = 'https://www.alphavantage.co/query';
 
-  getInstruments(symbol: string): Observable<any[]> {
+  getTimeSeriesDaily(symbol: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.rootUrl}?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${environment.alphaVantageApiKey}`);
   }
 }

@@ -1,10 +1,7 @@
 <app-title title="Search"></app-title>
-<div *ngIf="stockPrices">- {{searchInput}}</div>
-<form clrForm [formGroup]="searchForm">
-    <input class="search-bar" clrInput placeholder="Enter a ticker..." (change)="onChangeSearchInput($event)"
-           formControlName="searchCtrl" />
-</form>
-<app-spinner [loading]="loading"></app-spinner>
+
+<app-time-series (outputLoadStockPrices)="onOutputLoadStockPrices($event)"></app-time-series>
+
 <div *ngIf="stockPrices">
     <clr-datagrid>
         <clr-dg-column>

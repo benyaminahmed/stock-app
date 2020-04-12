@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { StockCardComponent } from './shared/components/stock-card/stock-card.component';
+import { TimeSeriesComponent } from './shared/components/time-series/time-series.component';
 import { TitleComponent } from './shared/components/title/title.component';
 
 @NgModule({
@@ -22,7 +23,8 @@ import { TitleComponent } from './shared/components/title/title.component';
     TitleComponent,
     SpinnerComponent,
     StockCardComponent,
-    SearchComponent
+    SearchComponent,
+    TimeSeriesComponent
   ],
   imports: [
     BrowserModule,
