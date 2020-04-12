@@ -1,6 +1,44 @@
 <app-title title="Search"></app-title>
-- {{searchInput}}
+<div *ngIf="data">- {{searchInput}}</div>
 <form clrForm [formGroup]="searchForm">
-    <input class="search-bar" clrInput placeholder="Find your stock..." (change)="onChangeSearchInput($event)"
+    <input class="search-bar" clrInput placeholder="Enter a ticker..." (change)="onChangeSearchInput($event)"
            formControlName="searchCtrl" />
 </form>
+<app-spinner [loading]="loading"></app-spinner>
+<div *ngIf="data">
+    <clr-datagrid>
+        <clr-dg-column>
+            <clr-icon shape="calendar"></clr-icon>
+            Date
+        </clr-dg-column>
+        <clr-dg-column>
+            <clr-icon shape="folder-open"></clr-icon>
+            Open
+        </clr-dg-column>
+        <clr-dg-column>
+            <clr-icon shape="arrow"></clr-icon>
+            High
+        </clr-dg-column>
+        <clr-dg-column>
+            <clr-icon shape="arrow down"></clr-icon>
+            Low
+        </clr-dg-column>
+        <clr-dg-column>
+            <clr-icon shape="window-close"></clr-icon>
+            Close
+        </clr-dg-column>
+        <clr-dg-column>
+            <clr-icon shape="volume"></clr-icon>
+            Volume
+        </clr-dg-column>
+        <clr-dg-row>
+            <clr-dg-cell></clr-dg-cell>
+            <clr-dg-cell></clr-dg-cell>
+            <clr-dg-cell></clr-dg-cell>
+            <clr-dg-cell></clr-dg-cell>
+        </clr-dg-row>
+
+        <clr-dg-footer></clr-dg-footer>
+    </clr-datagrid>
+    <pre *ngIf="data">{{data  | json}}</pre>
+</div>
