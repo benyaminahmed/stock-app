@@ -1,3 +1,5 @@
+@import 'colours';
+
 .search-bar {
     width: 450px;
     margin-left: -210px;
@@ -9,4 +11,5 @@
 
 clr-icon {
     margin-right: 10px;
+    color: $primary-blue;
 }
