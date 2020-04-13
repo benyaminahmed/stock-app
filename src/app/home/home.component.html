@@ -2,7 +2,7 @@
 
 <app-time-series (outputLoadStockPrices)="onOutputLoadStockPrices($event)"></app-time-series>
 
-<div class="clr-row">
+<div *ngIf="stockPrices" class="clr-row">
     <div class="clr-col-12">
         <div class="card">
             <div shape="arrow" class="card-header">

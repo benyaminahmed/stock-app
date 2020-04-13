@@ -1,6 +1,7 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as Highcharts from 'highcharts';
 
+import { StockPrice } from '../shared/models/stock-price';
 import { HighchartsService } from '../shared/services/highcharts.service';
 
 const More = require('highcharts/highcharts-more');
@@ -11,7 +12,7 @@ More(Highcharts);
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit {
 
   @ViewChild('charts') public chartEl: ElementRef;
 
@@ -19,6 +20,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   chart: Highcharts.Chart;
   options: Highcharts.Options;
   starSelected = false;
+
+  stockPrices: StockPrice[];
 
   chartOptions = {
     title: {
@@ -71,12 +74,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngAfterViewInit(): void {
-    this.highcharts.createChart(this.chartEl.nativeElement, this.chartOptions);
-  }
-
   onClickStarIcon(): void {
     this.starSelected = !this.starSelected;
+  }
+
+  onOutputLoadStockPrices(event) {
+    this.stockPrices = event;
+
+    setTimeout(() => {
+      this.highcharts.createChart(this.chartEl.nativeElement, this.chartOptions);
+    }, 0);
   }
 }
 
