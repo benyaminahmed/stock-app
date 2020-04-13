@@ -27,7 +27,7 @@
             <clr-icon shape="volume"></clr-icon>
             Volume
         </clr-dg-column>
-        <clr-dg-row *ngFor="let sp of stockPrices">
+        <clr-dg-row *clrDgItems="let sp of stockPrices" [clrDgItem]="sp">
             <clr-dg-cell>{{sp.date | date:'short'}}</clr-dg-cell>
             <clr-dg-cell>{{sp.open | number}}</clr-dg-cell>
             <clr-dg-cell>{{sp.high | number}}</clr-dg-cell>
@@ -35,7 +35,12 @@
             <clr-dg-cell>{{sp.close | number}}</clr-dg-cell>
             <clr-dg-cell>{{sp.volume | number}}</clr-dg-cell>
         </clr-dg-row>
-
-        <clr-dg-footer></clr-dg-footer>
+        <clr-dg-footer>
+            <clr-dg-pagination #pagination [clrDgPageSize]="10">
+                <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Prices per page</clr-dg-page-size>
+                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                of {{pagination.totalItems}} prices
+            </clr-dg-pagination>
+        </clr-dg-footer>
     </clr-datagrid>
 </div>

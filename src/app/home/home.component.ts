@@ -31,7 +31,11 @@ export class HomeComponent {
     },
 
     legend: {
-      enabled: false
+      align: 'right',
+      verticalAlign: 'top',
+      layout: 'vertical',
+      x: 0,
+      y: 100
     },
 
     plotOptions: {
@@ -41,15 +45,11 @@ export class HomeComponent {
         }
       }
     },
-    series: [{
-      name: '',
-      data: []
-    }],
+    series: [],
     xAxis: {
       type: 'datetime',
       dateTimeLabelFormats: {
         month: '%e. %b',
-        year: '%b'
       },
     },
     responsive: {
@@ -69,18 +69,36 @@ export class HomeComponent {
 
   onOutputLoadStockPrices(event) {
     this.stockPrices = event;
+    this.chartOptions.series = [];
 
     const prices = _.take(_.orderBy(this.stockPrices, ['date'], ['desc']), 7);
 
-    this.chartOptions.series[0].data = [];
+    const createChartSeries = (type) => {
+      this.chartOptions.series.push({
+        name: type,
+        data: []
+      });
+    };
+
+    createChartSeries('Open');
+    createChartSeries('Close');
+    createChartSeries('High');
+    createChartSeries('Low');
 
     for (let i = 0; i < prices.length; i++) {
       const mmt = moment(prices[i].date).toDate();
-      this.chartOptions.series[0].data.push(
-        [
-          Date.UTC(mmt.getFullYear(), mmt.getMonth(), mmt.getDate()),
-          prices[i].open
-        ]);
+
+      const setChartSeries = (type, index) => {
+        this.chartOptions.series[index].data.push(
+          [
+            Date.UTC(mmt.getFullYear(), mmt.getMonth(), mmt.getDate()),
+            prices[i][type.toLowerCase()]
+          ]);
+      };
+      setChartSeries('Open', 0);
+      setChartSeries('Close', 1);
+      setChartSeries('High', 2);
+      setChartSeries('Low', 3);
     }
 
     setTimeout(() => {
