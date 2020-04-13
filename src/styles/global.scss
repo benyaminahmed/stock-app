@@ -1,11 +1,11 @@
 @import 'colours';
 
 :root {
-    --clr-header-bg-color: #01A9DB;
+    --clr-header-bg-color: black;
 }
 
 .company-logo {
-    background-image: url('/assets/img/logo.png');
+    background-image: url('/assets/img/logo.jpg');
     width: 100px;
     height: 35px;
     margin-top: 12px;

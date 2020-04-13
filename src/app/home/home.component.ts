@@ -1,5 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import * as _ from 'lodash';
+import * as moment from 'moment';
 
 import { StockPrice } from '../shared/models/stock-price';
 import { HighchartsService } from '../shared/services/highcharts.service';
@@ -12,7 +14,7 @@ More(Highcharts);
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
   @ViewChild('charts') public chartEl: ElementRef;
 
@@ -36,8 +38,7 @@ export class HomeComponent implements OnInit {
       series: {
         label: {
           connectorAllowed: false
-        },
-        pointStart: 830
+        }
       }
     },
     series: [{
@@ -47,8 +48,9 @@ export class HomeComponent implements OnInit {
     xAxis: {
       type: 'datetime',
       dateTimeLabelFormats: {
-        hour: '%H:%M'
-      }
+        month: '%e. %b',
+        year: '%b'
+      },
     },
     responsive: {
       rules: [{
@@ -61,25 +63,25 @@ export class HomeComponent implements OnInit {
 
   constructor(private highcharts: HighchartsService) { }
 
-  ngOnInit(): void {
-    this.loading = false;
-
-    let h = 8;
-
-    for (let i = 0; i < 12; i++) {
-      const y = Math.floor(Math.random() * 160) + 170;
-      this.chartOptions.series[0].data.push([Date.UTC(2020, 2, 3, h), y]);
-
-      h++;
-    }
-  }
-
   onClickStarIcon(): void {
     this.starSelected = !this.starSelected;
   }
 
   onOutputLoadStockPrices(event) {
     this.stockPrices = event;
+
+    const prices = _.take(_.orderBy(this.stockPrices, ['date'], ['desc']), 7);
+
+    this.chartOptions.series[0].data = [];
+
+    for (let i = 0; i < prices.length; i++) {
+      const mmt = moment(prices[i].date).toDate();
+      this.chartOptions.series[0].data.push(
+        [
+          Date.UTC(mmt.getFullYear(), mmt.getMonth(), mmt.getDate()),
+          prices[i].open
+        ]);
+    }
 
     setTimeout(() => {
       this.highcharts.createChart(this.chartEl.nativeElement, this.chartOptions);

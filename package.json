@@ -23,9 +23,13 @@
     "@clr/core": "^3.1.0",
     "@clr/icons": "^3.1.0",
     "@clr/ui": "^3.1.0",
+    "@types/lodash": "^4.14.149",
+    "@types/moment": "^2.13.0",
     "@webcomponents/webcomponentsjs": "^2.4.3",
     "highcharts": "^8.0.4",
     "highcharts-angular": "^2.4.0",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
