@@ -15,4 +15,9 @@ export class AlphaVantageService {
   getTimeSeriesDaily(symbol: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.rootUrl}?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${environment.alphaVantageApiKey}`);
   }
+
+  getSymbolSearch(symbol: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.rootUrl}?function=SYMBOL_SEARCH&symbol=${symbol}&apikey=${environment.alphaVantageApiKey}`);
+  }
+
 }
