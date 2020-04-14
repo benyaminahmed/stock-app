@@ -15,7 +15,8 @@ import { SpinnerComponent } from './shared/components/spinner/spinner.component'
 import { StockCardComponent } from './shared/components/stock-card/stock-card.component';
 import { TimeSeriesComponent } from './shared/components/time-series/time-series.component';
 import { TitleComponent } from './shared/components/title/title.component';
-import { SymbolSearchComponent } from './shared/components/symbol-search/symbol-search.component';
+import { CompanyComponent } from './shared/components/company/company.component';
+import { PropertyCardComponent } from './shared/components/property-card/property-card.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SymbolSearchComponent } from './shared/components/symbol-search/symbol-
     StockCardComponent,
     SearchComponent,
     TimeSeriesComponent,
-    SymbolSearchComponent
+    CompanyComponent,
+    PropertyCardComponent
   ],
   imports: [
     BrowserModule,

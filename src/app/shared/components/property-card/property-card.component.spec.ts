@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SymbolSearchComponent } from './symbol-search.component';
+import { PropertyCardComponent } from './property-card.component';
 
-describe('SymbolSearchComponent', () => {
-  let component: SymbolSearchComponent;
-  let fixture: ComponentFixture<SymbolSearchComponent>;
+describe('PropertyCardComponent', () => {
+  let component: PropertyCardComponent;
+  let fixture: ComponentFixture<PropertyCardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SymbolSearchComponent ]
+      declarations: [ PropertyCardComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SymbolSearchComponent);
+    fixture = TestBed.createComponent(PropertyCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
