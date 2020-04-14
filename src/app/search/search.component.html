@@ -1,7 +1,14 @@
 <app-title title="Search"></app-title>
-<app-property-card title="Open" value="163" currency="$"></app-property-card>
+
 <app-time-series (outputLoadStockPrices)="onOutputLoadStockPrices($event)"></app-time-series>
+
 <div *ngIf="stockPrices">
+
+    <app-property-card title="Open" [value]="stockPrices[0].open" currency="$"></app-property-card>
+    <app-property-card title="High" [value]="stockPrices[0].high" currency="$"></app-property-card>
+    <app-property-card title="Low" [value]="stockPrices[0].low" currency="$"></app-property-card>
+    <app-property-card title="Close" [value]="stockPrices[0].close" currency="$"></app-property-card>
+
     <clr-datagrid>
         <clr-dg-column>
             <clr-icon shape="calendar"></clr-icon>
