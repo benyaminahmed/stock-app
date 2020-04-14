@@ -15,6 +15,7 @@ import { SpinnerComponent } from './shared/components/spinner/spinner.component'
 import { StockCardComponent } from './shared/components/stock-card/stock-card.component';
 import { TimeSeriesComponent } from './shared/components/time-series/time-series.component';
 import { TitleComponent } from './shared/components/title/title.component';
+import { SymbolSearchComponent } from './shared/components/symbol-search/symbol-search.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TitleComponent } from './shared/components/title/title.component';
     SpinnerComponent,
     StockCardComponent,
     SearchComponent,
-    TimeSeriesComponent
+    TimeSeriesComponent,
+    SymbolSearchComponent
   ],
   imports: [
     BrowserModule,
