@@ -11,6 +11,7 @@ import { AlphaVantageService } from '../../services/alpha-vantage.service';
   styleUrls: ['./company.component.scss']
 })
 export class CompanyComponent implements OnInit {
+
   @Output() outputLoadCompanies: EventEmitter<Company[]> =
     new EventEmitter<Company[]>();
 

@@ -105,6 +105,10 @@ export class HomeComponent {
       this.highcharts.createChart(this.chartEl.nativeElement, this.chartOptions);
     }, 0);
   }
+
+  onOutputLoadCompanies($event) {
+
+  }
 }
 
 
