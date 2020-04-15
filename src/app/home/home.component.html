@@ -1,3 +1,25 @@
 <app-title title="Home"></app-title>
 
 <app-company (outputLoadCompanies)="onOutputLoadCompanies($event)"></app-company>
+
+<div *ngIf="companies">
+
+    <clr-datagrid>
+        <clr-dg-column>Symbol</clr-dg-column>
+        <clr-dg-column>Name</clr-dg-column>
+        <clr-dg-column>Type</clr-dg-column>
+        <clr-dg-column>Region</clr-dg-column>
+        <clr-dg-column>Market Open</clr-dg-column>
+        <clr-dg-column>Market Close</clr-dg-column>
+        <clr-dg-column>Currency</clr-dg-column>
+        <clr-dg-row *clrDgItems="let c of companies" [clrDgItem]="c">
+            <clr-dg-cell>{{c.symbol}}</clr-dg-cell>
+            <clr-dg-cell>{{c.name}}</clr-dg-cell>
+            <clr-dg-cell>{{c.type}}</clr-dg-cell>
+            <clr-dg-cell>{{c.region}}</clr-dg-cell>
+            <clr-dg-cell>{{c.marketOpen}}</clr-dg-cell>
+            <clr-dg-cell>{{c.marketClose}}</clr-dg-cell>
+            <clr-dg-cell>{{c.currency}}</clr-dg-cell>
+        </clr-dg-row>
+    </clr-datagrid>
+</div>

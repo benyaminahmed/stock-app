@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import * as Highcharts from 'highcharts';
 
+import { Company } from '../shared/models/company';
+
 const More = require('highcharts/highcharts-more');
 More(Highcharts);
 
@@ -11,11 +13,11 @@ More(Highcharts);
 })
 export class HomeComponent {
 
-  loading = true;
+  companies: Company[];
 
   onOutputLoadCompanies(event) {
 
-    alert(event);
+    this.companies = event;
   }
 }
 

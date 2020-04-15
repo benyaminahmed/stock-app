@@ -17,6 +17,7 @@ import { TimeSeriesComponent } from './shared/components/time-series/time-series
 import { TitleComponent } from './shared/components/title/title.component';
 import { CompanyComponent } from './shared/components/company/company.component';
 import { PropertyCardComponent } from './shared/components/property-card/property-card.component';
+import { TimeSeriesDailyComponent } from './time-series-daily/time-series-daily.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PropertyCardComponent } from './shared/components/property-card/propert
     SearchComponent,
     TimeSeriesComponent,
     CompanyComponent,
-    PropertyCardComponent
+    PropertyCardComponent,
+    TimeSeriesDailyComponent
   ],
   imports: [
     BrowserModule,

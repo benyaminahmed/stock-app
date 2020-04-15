@@ -46,7 +46,29 @@ export class CompanyComponent implements OnInit {
 
   mapCompanies(data: any): Company[] {
 
-    const res = new Array<Company>();
+    const res = new Array<Company>(); if (data) {
+      const companies = data.bestMatches;
+
+      companies.forEach(c => {
+        const symbol = c['1. symbol'];
+        const name = c['2. name'];
+        const type = c['3. type'];
+        const region = c['4. region'];
+        const marketOpen = c['5. marketOpen'];
+        const marketClose = c['6. marketClose'];
+        const currency = c['8. currency'];
+
+        res.push({
+          symbol,
+          name,
+          type,
+          region,
+          marketOpen,
+          marketClose,
+          currency
+        });
+      });
+    }
     return res;
   }
 

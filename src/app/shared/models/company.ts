@@ -6,5 +6,4 @@ export interface Company {
     marketOpen: string;
     marketClose: string;
     currency: string;
-
 }
