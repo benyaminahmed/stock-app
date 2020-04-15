@@ -13,10 +13,11 @@ import { HighchartsService } from '../../services/highcharts.service';
 export class StockCardComponent implements OnInit {
 
   @Input() stockPrices: StockPrice[];
+  @Input() symbol: string;
+  @Input() companyName: string;
 
   @ViewChild('charts') public chartEl: ElementRef;
 
-  loading = true;
   chart: Highcharts.Chart;
   options: Highcharts.Options;
   starSelected = false;
@@ -90,7 +91,6 @@ export class StockCardComponent implements OnInit {
       setChartSeries('Low', 3);
     }
 
-    this.loading = false;
 
     setTimeout(() => {
       this.highcharts.createChart(this.chartEl.nativeElement, this.chartOptions);

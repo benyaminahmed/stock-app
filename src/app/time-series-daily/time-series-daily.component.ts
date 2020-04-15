@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { map } from 'rxjs/internal/operators/map';
+
+import { StockPrice } from '../shared/models/stock-price';
+import { AlphaVantageService } from '../shared/services/alpha-vantage.service';
 
 @Component({
   selector: 'app-time-series-daily',
@@ -7,9 +12,60 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimeSeriesDailyComponent implements OnInit {
 
-  constructor() { }
+  stockPrices: StockPrice[];
+  symbol: string;
+  companyName: string;
+
+  loading: boolean;
+
+  constructor(private alphaVantageSvc: AlphaVantageService, public activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.symbol = params.symbol;
+      this.companyName = params.name;
+      this.search(this.symbol);
+    });
   }
 
+  search(symbol: string) {
+    this.stockPrices = null;
+    this.loading = true;
+    this.alphaVantageSvc
+      .getTimeSeriesDaily(symbol)
+      .pipe(
+        map(res => {
+          this.stockPrices = this.mapStockPrices(res);
+          this.loading = false;
+        }))
+      .subscribe();
+  }
+
+  mapStockPrices(data: any): StockPrice[] {
+
+    const res = new Array<StockPrice>();
+
+    if (data) {
+      const prices = data['Time Series (Daily)'];
+
+      for (const [key, value] of Object.entries(prices)) {
+        const date = new Date(key);
+        const open = parseInt(value['1. open'], 10);
+        const high = parseInt(value['2. high'], 10);
+        const low = parseInt(value['3. low'], 10);
+        const close = parseInt(value['4. close'], 10);
+        const volume = parseInt(value['5. volume'], 10);
+
+        res.push({
+          date: new Date(date),
+          open,
+          high,
+          low,
+          close,
+          volume
+        } as StockPrice);
+      }
+    }
+    return res;
+  }
 }

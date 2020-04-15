@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
+import { TimeSeriesDailyComponent } from './time-series-daily/time-series-daily.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path: 'search',
     component: SearchComponent
+  },
+  {
+    path: 'time-series-daily/:symbol/:name',
+    component: TimeSeriesDailyComponent
   }
 ];
 

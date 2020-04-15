@@ -1,10 +1,10 @@
-<div class="card">
+<div *ngIf="stockPrices" class="card">
     <div shape="arrow" class="card-header">
-        MICROSOFT CORPORATION
+        {{companyName}}
     </div>
     <div class="card-block">
         <div class="card-title">
-            NASDAQ MSFT : $165.14
+            NASDAQ {{symbol}} : ${{stockPrices[0].close}}
         </div>
         <div class="card-text">
             <clr-icon class="up-arrow" shape="arrow"></clr-icon>

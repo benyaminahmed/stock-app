@@ -13,7 +13,7 @@
         <clr-dg-column>Market Close</clr-dg-column>
         <clr-dg-column>Currency</clr-dg-column>
         <clr-dg-row *clrDgItems="let c of companies" [clrDgItem]="c">
-            <clr-dg-cell>{{c.symbol}}</clr-dg-cell>
+            <clr-dg-cell><a [routerLink]="[ '/time-series-daily',c.symbol, c.name]">{{c.symbol}}</a></clr-dg-cell>
             <clr-dg-cell>{{c.name}}</clr-dg-cell>
             <clr-dg-cell>{{c.type}}</clr-dg-cell>
             <clr-dg-cell>{{c.region}}</clr-dg-cell>
