@@ -4,10 +4,16 @@
 
 <div *ngIf="stockPrices">
 
-    <app-property-card title="Open" [value]="stockPrices[0].open" currency="$"></app-property-card>
-    <app-property-card title="High" [value]="stockPrices[0].high" currency="$"></app-property-card>
-    <app-property-card title="Low" [value]="stockPrices[0].low" currency="$"></app-property-card>
-    <app-property-card title="Close" [value]="stockPrices[0].close" currency="$"></app-property-card>
+    <app-property-card title="Open" [value]="stockPrices[0].open" currency="$" colourClass="brand-blue">
+    </app-property-card>
+    <app-property-card title="High" [value]="stockPrices[0].high" currency="$" colourClass="brand-green">
+    </app-property-card>
+    <app-property-card title="Low" [value]="stockPrices[0].low" currency="$" colourClass="brand-purple">
+    </app-property-card>
+    <app-property-card title="Close" [value]="stockPrices[0].close" currency="$" colourClass="brand-red">
+    </app-property-card>
+
+    <app-stock-card [stockPrices]="stockPrices"></app-stock-card>
 
     <clr-datagrid>
         <clr-dg-column>
@@ -15,19 +21,19 @@
             Date
         </clr-dg-column>
         <clr-dg-column>
-            <clr-icon shape="folder-open"></clr-icon>
+            <clr-icon shape="folder-open" class="icon-one"></clr-icon>
             Open
         </clr-dg-column>
         <clr-dg-column>
-            <clr-icon shape="arrow"></clr-icon>
+            <clr-icon shape="arrow" class="icon-two"></clr-icon>
             High
         </clr-dg-column>
         <clr-dg-column>
-            <clr-icon shape="arrow down"></clr-icon>
+            <clr-icon shape="arrow down" class="icon-three"></clr-icon>
             Low
         </clr-dg-column>
         <clr-dg-column>
-            <clr-icon shape="window-close"></clr-icon>
+            <clr-icon shape="window-close" class="icon-four"></clr-icon>
             Close
         </clr-dg-column>
         <clr-dg-column>

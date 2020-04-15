@@ -1,3 +1,5 @@
+@import 'colours';
+
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     width: 150px;
@@ -17,4 +19,24 @@
 
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+@mixin getBorder($colour) {
+    border-top: 5px solid $colour;
+}
+
+.brand-blue {
+    @include getBorder($brand-blue);
+}
+
+.brand-green {
+    @include getBorder($brand-green);
+}
+
+.brand-purple {
+    @include getBorder($brand-purple);
+}
+
+.brand-red {
+    @include getBorder($brand-red);
 }

@@ -1,6 +1,8 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import * as _ from 'lodash';
+import * as moment from 'moment';
 
-import { Stock } from '../../models/stock';
+import { StockPrice } from '../../models/stock-price';
 import { HighchartsService } from '../../services/highcharts.service';
 
 @Component({
@@ -10,7 +12,7 @@ import { HighchartsService } from '../../services/highcharts.service';
 })
 export class StockCardComponent implements OnInit {
 
-  @Input() stock: Stock;
+  @Input() stockPrices: StockPrice[];
 
   @ViewChild('charts') public chartEl: ElementRef;
 
@@ -25,22 +27,27 @@ export class StockCardComponent implements OnInit {
     },
 
     legend: {
-      enabled: false
+      align: 'right',
+      verticalAlign: 'top',
+      layout: 'vertical',
+      x: 0,
+      y: 100
     },
 
     plotOptions: {
       series: {
         label: {
           connectorAllowed: false
-        },
-        pointStart: 2014
+        }
       }
     },
-    series: [{
-      name: '',
-      data: []
-    }],
-
+    series: [],
+    xAxis: {
+      type: 'datetime',
+      dateTimeLabelFormats: {
+        month: '%e. %b',
+      },
+    },
     responsive: {
       rules: [{
         condition: {
@@ -53,11 +60,41 @@ export class StockCardComponent implements OnInit {
   constructor(private highcharts: HighchartsService) { }
 
   public ngOnInit(): void {
+    const prices = _.take(_.orderBy(this.stockPrices, ['date'], ['desc']), 7);
+
+    const createChartSeries = (type) => {
+      this.chartOptions.series.push({
+        name: type,
+        data: []
+      });
+    };
+
+    createChartSeries('Open');
+    createChartSeries('Close');
+    createChartSeries('High');
+    createChartSeries('Low');
+
+    for (let i = 0; i < prices.length; i++) {
+      const mmt = moment(prices[i].date).toDate();
+
+      const setChartSeries = (type, index) => {
+        this.chartOptions.series[index].data.push(
+          [
+            Date.UTC(mmt.getFullYear(), mmt.getMonth(), mmt.getDate()),
+            prices[i][type.toLowerCase()]
+          ]);
+      };
+      setChartSeries('Open', 0);
+      setChartSeries('Close', 1);
+      setChartSeries('High', 2);
+      setChartSeries('Low', 3);
+    }
+
     this.loading = false;
 
-    for (let i = 0; i < 50; i++) {
-      this.chartOptions.series[0].data.push(Math.floor(Math.random() * 160) + 170);
-    }
+    setTimeout(() => {
+      this.highcharts.createChart(this.chartEl.nativeElement, this.chartOptions);
+    }, 0);
   }
 
   // tslint:disable-next-line: use-lifecycle-interface
