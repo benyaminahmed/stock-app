@@ -14,7 +14,8 @@
         <app-property-card title="Close" [value]="stockPrices[0].close" currency="$" colourClass="brand-red">
         </app-property-card>
 
-        <app-stock-card [stockPrices]="stockPrices" [symbol]="symbol" [companyName]="companyName"></app-stock-card>
+        <app-stock-card [stockPrices]="stockPrices" [symbol]="symbol" [companyName]="companyName" [region]="region">
+        </app-stock-card>
 
         <clr-datagrid>
             <clr-dg-column>

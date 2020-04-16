@@ -17,14 +17,14 @@ export class TimeSeriesDailyComponent implements OnInit {
   stockPrices: StockPrice[];
   symbol: string;
   companyName: string;
-
+  region: string;
   loading: boolean;
-
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.symbol = params.symbol;
       this.companyName = params.name;
+      this.region = params.region;
       this.search(this.symbol);
     });
   }

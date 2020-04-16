@@ -15,6 +15,7 @@ export class StockCardComponent implements OnInit {
   @Input() stockPrices: StockPrice[];
   @Input() symbol: string;
   @Input() companyName: string;
+  @Input() region: string;
 
   @ViewChild('charts') public chartEl: ElementRef;
 

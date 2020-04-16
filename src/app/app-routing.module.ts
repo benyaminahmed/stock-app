@@ -12,7 +12,7 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'time-series-daily/:symbol/:name',
+    path: 'time-series-daily/:symbol/:name/:region',
     component: TimeSeriesDailyComponent
   },
   {
