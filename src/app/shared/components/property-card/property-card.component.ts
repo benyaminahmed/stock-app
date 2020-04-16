@@ -10,5 +10,4 @@ export class PropertyCardComponent {
   @Input() value: number;
   @Input() currency: string;
   @Input() colourClass: string;
-
 }
