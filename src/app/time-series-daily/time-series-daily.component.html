@@ -1,59 +1,78 @@
+<app-title title="{{symbol}} - {{companyName}}"></app-title>
+
 <app-spinner [loading]="loading"></app-spinner>
 
-<div *ngIf="stockPrices">
+<div *ngIf="!loading">
+    <div *ngIf="stockPrices">
 
-    <app-title title="{{symbol}} - {{companyName}}"></app-title>
+        <app-property-card title="Open" [value]="stockPrices[0].open" currency="$" colourClass="brand-blue">
+        </app-property-card>
+        <app-property-card title="High" [value]="stockPrices[0].high" currency="$" colourClass="brand-green">
+        </app-property-card>
+        <app-property-card title="Low" [value]="stockPrices[0].low" currency="$" colourClass="brand-purple">
+        </app-property-card>
+        <app-property-card title="Close" [value]="stockPrices[0].close" currency="$" colourClass="brand-red">
+        </app-property-card>
 
-    <app-property-card title="Open" [value]="stockPrices[0].open" currency="$" colourClass="brand-blue">
-    </app-property-card>
-    <app-property-card title="High" [value]="stockPrices[0].high" currency="$" colourClass="brand-green">
-    </app-property-card>
-    <app-property-card title="Low" [value]="stockPrices[0].low" currency="$" colourClass="brand-purple">
-    </app-property-card>
-    <app-property-card title="Close" [value]="stockPrices[0].close" currency="$" colourClass="brand-red">
-    </app-property-card>
+        <app-stock-card [stockPrices]="stockPrices" [symbol]="symbol" [companyName]="companyName"></app-stock-card>
 
-    <app-stock-card [stockPrices]="stockPrices" [symbol]="symbol" [companyName]="companyName"></app-stock-card>
+        <clr-datagrid>
+            <clr-dg-column>
+                <clr-icon shape="calendar"></clr-icon>
+                Date
+            </clr-dg-column>
+            <clr-dg-column>
+                <clr-icon shape="folder-open" class="icon-one"></clr-icon>
+                Open
+            </clr-dg-column>
+            <clr-dg-column>
+                <clr-icon shape="arrow" class="icon-two"></clr-icon>
+                High
+            </clr-dg-column>
+            <clr-dg-column>
+                <clr-icon shape="arrow down" class="icon-three"></clr-icon>
+                Low
+            </clr-dg-column>
+            <clr-dg-column>
+                <clr-icon shape="window-close" class="icon-four"></clr-icon>
+                Close
+            </clr-dg-column>
+            <clr-dg-column>
+                <clr-icon shape="volume"></clr-icon>
+                Volume
+            </clr-dg-column>
+            <clr-dg-row *clrDgItems="let sp of stockPrices" [clrDgItem]="sp">
+                <clr-dg-cell>{{sp.date | date:'short'}}</clr-dg-cell>
+                <clr-dg-cell>{{sp.open | number}}</clr-dg-cell>
+                <clr-dg-cell>{{sp.high | number}}</clr-dg-cell>
+                <clr-dg-cell>{{sp.low | number}}</clr-dg-cell>
+                <clr-dg-cell>{{sp.close | number}}</clr-dg-cell>
+                <clr-dg-cell>{{sp.volume | number}}</clr-dg-cell>
+            </clr-dg-row>
+            <clr-dg-footer>
+                <clr-dg-pagination #pagination [clrDgPageSize]="10">
+                    <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Prices per page</clr-dg-page-size>
+                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                    of {{pagination.totalItems}} prices
+                </clr-dg-pagination>
+            </clr-dg-footer>
+        </clr-datagrid>
+    </div>
 
-    <clr-datagrid>
-        <clr-dg-column>
-            <clr-icon shape="calendar"></clr-icon>
-            Date
-        </clr-dg-column>
-        <clr-dg-column>
-            <clr-icon shape="folder-open" class="icon-one"></clr-icon>
-            Open
-        </clr-dg-column>
-        <clr-dg-column>
-            <clr-icon shape="arrow" class="icon-two"></clr-icon>
-            High
-        </clr-dg-column>
-        <clr-dg-column>
-            <clr-icon shape="arrow down" class="icon-three"></clr-icon>
-            Low
-        </clr-dg-column>
-        <clr-dg-column>
-            <clr-icon shape="window-close" class="icon-four"></clr-icon>
-            Close
-        </clr-dg-column>
-        <clr-dg-column>
-            <clr-icon shape="volume"></clr-icon>
-            Volume
-        </clr-dg-column>
-        <clr-dg-row *clrDgItems="let sp of stockPrices" [clrDgItem]="sp">
-            <clr-dg-cell>{{sp.date | date:'short'}}</clr-dg-cell>
-            <clr-dg-cell>{{sp.open | number}}</clr-dg-cell>
-            <clr-dg-cell>{{sp.high | number}}</clr-dg-cell>
-            <clr-dg-cell>{{sp.low | number}}</clr-dg-cell>
-            <clr-dg-cell>{{sp.close | number}}</clr-dg-cell>
-            <clr-dg-cell>{{sp.volume | number}}</clr-dg-cell>
-        </clr-dg-row>
-        <clr-dg-footer>
-            <clr-dg-pagination #pagination [clrDgPageSize]="10">
-                <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Prices per page</clr-dg-page-size>
-                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                of {{pagination.totalItems}} prices
-            </clr-dg-pagination>
-        </clr-dg-footer>
-    </clr-datagrid>
+    <div *ngIf="!stockPrices">
+        <div class="content-area">
+            <div class="alert alert-danger" role="alert">
+                <div class="alert-items">
+                    <div class="alert-item static">
+                        <div class="alert-icon-wrapper">
+                            <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                        </div>
+                        <span class="alert-text">
+                            We don't have any intraday prices for this stock.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

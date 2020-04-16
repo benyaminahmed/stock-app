@@ -12,13 +12,14 @@ import { AlphaVantageService } from '../shared/services/alpha-vantage.service';
 })
 export class TimeSeriesDailyComponent implements OnInit {
 
+  constructor(private alphaVantageSvc: AlphaVantageService, public activatedRoute: ActivatedRoute) { }
+
   stockPrices: StockPrice[];
   symbol: string;
   companyName: string;
 
   loading: boolean;
 
-  constructor(private alphaVantageSvc: AlphaVantageService, public activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -38,34 +39,39 @@ export class TimeSeriesDailyComponent implements OnInit {
           this.stockPrices = this.mapStockPrices(res);
           this.loading = false;
         }))
-      .subscribe();
+      .subscribe(
+        error => {
+          this.loading = false;
+          console.log('error');
+        });
   }
 
   mapStockPrices(data: any): StockPrice[] {
 
-    const res = new Array<StockPrice>();
-
+    let res = null;
     if (data) {
       const prices = data['Time Series (Daily)'];
 
-      for (const [key, value] of Object.entries(prices)) {
-        const date = new Date(key);
-        const open = parseInt(value['1. open'], 10);
-        const high = parseInt(value['2. high'], 10);
-        const low = parseInt(value['3. low'], 10);
-        const close = parseInt(value['4. close'], 10);
-        const volume = parseInt(value['5. volume'], 10);
-
-        res.push({
-          date: new Date(date),
-          open,
-          high,
-          low,
-          close,
-          volume
-        } as StockPrice);
+      if (prices) {
+        res = new Array<StockPrice>();
+        for (const [key, value] of Object.entries(prices)) {
+          const date = new Date(key);
+          const open = parseInt(value['1. open'], 10);
+          const high = parseInt(value['2. high'], 10);
+          const low = parseInt(value['3. low'], 10);
+          const close = parseInt(value['4. close'], 10);
+          const volume = parseInt(value['5. volume'], 10); res.push({
+            date: new Date(date),
+            open,
+            high,
+            low,
+            close,
+            volume
+          } as StockPrice);
+        }
       }
     }
     return res;
   }
 }
+

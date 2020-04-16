@@ -16,6 +16,7 @@ import { SpinnerComponent } from './shared/components/spinner/spinner.component'
 import { StockCardComponent } from './shared/components/stock-card/stock-card.component';
 import { TitleComponent } from './shared/components/title/title.component';
 import { TimeSeriesDailyComponent } from './time-series-daily/time-series-daily.component';
+import { SectorsComponent } from './sectors/sectors.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TimeSeriesDailyComponent } from './time-series-daily/time-series-daily.
     StockCardComponent,
     CompanyComponent,
     PropertyCardComponent,
-    TimeSeriesDailyComponent
+    TimeSeriesDailyComponent,
+    SectorsComponent
   ],
   imports: [
     BrowserModule,
