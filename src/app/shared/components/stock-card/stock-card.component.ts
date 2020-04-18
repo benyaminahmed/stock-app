@@ -1,5 +1,6 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { color } from 'highcharts';
+import * as Highcharts from 'highcharts';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 
@@ -19,71 +20,23 @@ export class StockCardComponent implements OnInit {
   @Input() companyName: string;
   @Input() region: string;
 
-  @ViewChild('charts') public chartEl: ElementRef;
-
-  chart: Highcharts.Chart;
-  options: Highcharts.Options;
+  Highcharts: typeof Highcharts = Highcharts;
+  chartOptions: Highcharts.Options;
   starSelected = false;
 
-  chartOptions = {
-    title: {
-      text: ''
-    },
-
-    legend: {
-      align: 'right',
-      verticalAlign: 'top',
-      layout: 'vertical',
-      x: 0,
-      y: 100
-    },
-
-    plotOptions: {
-      series: {
-        label: {
-          connectorAllowed: false
-        }
-      }
-    },
-    series: [],
-    xAxis: {
-      type: 'datetime',
-      dateTimeLabelFormats: {
-        month: '%e. %b',
-      },
-    },
-    responsive: {
-      rules: [{
-        condition: {
-          maxWidth: 500
-        }
-      }]
-    }
-  };
 
   constructor(private highcharts: HighchartsService) { }
 
   public ngOnInit(): void {
     const prices = _.take(_.orderBy(this.stockPrices, ['date'], ['desc']), 7);
-
-    const createChartSeries = (type, colour) => {
-      this.chartOptions.series.push({
-        name: type,
-        data: [],
-        color: colour
-      });
-    };
-
-    createChartSeries('Open', chartColours.blue);
-    createChartSeries('Close', chartColours.red);
-    createChartSeries('High', chartColours.green);
-    createChartSeries('Low', chartColours.purple);
+    this.buildChart();
 
     for (let i = 0; i < prices.length; i++) {
       const mmt = moment(prices[i].date).toDate();
 
       const setChartSeries = (type, index) => {
-        this.chartOptions.series[index].data.push(
+        // tslint:disable-next-line: no-string-literal
+        this.chartOptions.series[index]['data'].push(
           [
             Date.UTC(mmt.getFullYear(), mmt.getMonth(), mmt.getDate()),
             prices[i][type.toLowerCase()]
@@ -94,22 +47,62 @@ export class StockCardComponent implements OnInit {
       setChartSeries('High', 2);
       setChartSeries('Low', 3);
     }
-
-
-    setTimeout(() => {
-      this.highcharts.createChart(this.chartEl.nativeElement, this.chartOptions);
-    }, 0);
   }
 
-  // tslint:disable-next-line: use-lifecycle-interface
-  ngAfterViewInit(): void {
-    this.highcharts.createChart(this.chartEl.nativeElement, this.chartOptions);
+  buildChart(): void {
+
+    this.chartOptions = {
+      title: {
+        text: ''
+      },
+
+      legend: {
+        align: 'right',
+        verticalAlign: 'top',
+        layout: 'vertical',
+        x: 0,
+        y: 100
+      },
+
+      plotOptions: {
+        series: {
+          label: {
+            connectorAllowed: false
+          }
+        }
+      },
+      series: [],
+      xAxis: {
+        type: 'datetime',
+        dateTimeLabelFormats: {
+          month: '%e. %b',
+        },
+      },
+      responsive: {
+        rules: [{
+          condition: {
+            maxWidth: 500
+          }
+        }]
+      }
+    };
+
+    const createChartSeries = (name, colour) => {
+      this.chartOptions.series.push({
+        name,
+        data: [],
+        color: colour,
+        type: 'line'
+      });
+    };
+
+    createChartSeries('Open', chartColours.blue);
+    createChartSeries('Close', chartColours.red);
+    createChartSeries('High', chartColours.green);
+    createChartSeries('Low', chartColours.purple);
   }
 
   onClickStarIcon(): void {
     this.starSelected = !this.starSelected;
   }
-
-
-
 }
