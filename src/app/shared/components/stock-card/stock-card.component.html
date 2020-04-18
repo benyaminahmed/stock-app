@@ -13,6 +13,10 @@
         <highcharts-chart *ngIf="chartOptions" [Highcharts]="Highcharts" style="width: 100%; display: block;"
                           [options]="chartOptions">
         </highcharts-chart>
+
+        <highcharts-chart *ngIf="chartVolumeOptions" [Highcharts]="Highcharts" style="width: 100%; display: block;"
+                          [options]="chartVolumeOptions">
+        </highcharts-chart>
     </div>
 
 </div>

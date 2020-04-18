@@ -21,13 +21,22 @@ export class StockCardComponent implements OnInit {
 
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions: Highcharts.Options;
+  chartVolumeOptions: Highcharts.Options;
 
 
   constructor() { }
 
   public ngOnInit(): void {
     const prices = _.take(_.orderBy(this.stockPrices, ['date'], ['desc']), 7);
+
     this.buildChart();
+
+    const latestStockPrices = _.orderBy(this.stockPrices.slice(0, 30), 'date', 'asc');
+
+    const volume = latestStockPrices.map(s => s.volume);
+    const dates = latestStockPrices.map(s => moment(s.date).format('DD-MMM-YYYY'));
+
+    this.buildVolumeChart(dates, volume);
 
     for (let i = 0; i < prices.length; i++) {
       const mmt = moment(prices[i].date).toDate();
@@ -45,6 +54,32 @@ export class StockCardComponent implements OnInit {
       setChartSeries('High', 2);
       setChartSeries('Low', 3);
     }
+  }
+
+  buildVolumeChart(categories, data): void {
+    this.chartVolumeOptions = {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: ''
+      },
+      xAxis: {
+        categories,
+        crosshair: true
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: 'Volume'
+        }
+      },
+      series: [{
+        name: 'Volume',
+        data,
+        type: 'column'
+      }]
+    };
   }
 
   buildChart(): void {
