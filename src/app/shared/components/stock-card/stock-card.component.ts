@@ -6,7 +6,6 @@ import * as moment from 'moment';
 
 import { chartColours } from '../../helpers/colour';
 import { StockPrice } from '../../models/stock-price';
-import { HighchartsService } from '../../services/highcharts.service';
 
 @Component({
   selector: 'app-stock-card',
@@ -22,10 +21,9 @@ export class StockCardComponent implements OnInit {
 
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions: Highcharts.Options;
-  starSelected = false;
 
 
-  constructor(private highcharts: HighchartsService) { }
+  constructor() { }
 
   public ngOnInit(): void {
     const prices = _.take(_.orderBy(this.stockPrices, ['date'], ['desc']), 7);
@@ -100,9 +98,5 @@ export class StockCardComponent implements OnInit {
     createChartSeries('Close', chartColours.red);
     createChartSeries('High', chartColours.green);
     createChartSeries('Low', chartColours.purple);
-  }
-
-  onClickStarIcon(): void {
-    this.starSelected = !this.starSelected;
   }
 }

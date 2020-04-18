@@ -14,19 +14,5 @@
                           [options]="chartOptions">
         </highcharts-chart>
     </div>
-    <div class="card-footer">
-        <clr-dropdown>
-            <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
-                <label class="dropdown-header" aria-hidden="true">Time Frame:</label>
-                <div aria-label="Dropdown header Action 1" clrDropdownItem>1 Day</div>
-                <div aria-label="Dropdown header Action 1" clrDropdownItem>7 Day</div>
-                <div aria-label="Dropdown header Action 1" clrDropdownItem>1 Month</div>
-                <div aria-label="Dropdown header Action 1" clrDropdownItem>MAX</div>
-            </clr-dropdown-menu>
-        </clr-dropdown>
-        <button class="btn btn-sm btn-link">
-            <clr-icon class="star-shape" [class.selected]="starSelected" shape="star" (click)="onClickStarIcon()">
-            </clr-icon>
-        </button>
-    </div>
+
 </div>
