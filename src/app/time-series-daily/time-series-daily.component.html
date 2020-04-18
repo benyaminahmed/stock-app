@@ -13,6 +13,8 @@
         </app-property-card>
         <app-property-card title="Close" [value]="stockPrices[0].close" currency="$" colourClass="brand-red">
         </app-property-card>
+        <app-property-card title="Volume" [value]="stockPrices[0].volume" colourClass="brand-teal">
+        </app-property-card>
 
         <app-stock-card [stockPrices]="stockPrices" [symbol]="symbol" [companyName]="companyName" [region]="region">
         </app-stock-card>
@@ -39,7 +41,7 @@
                 Close
             </clr-dg-column>
             <clr-dg-column>
-                <clr-icon shape="volume"></clr-icon>
+                <clr-icon shape="volume" class="icon-five"></clr-icon>
                 Volume
             </clr-dg-column>
             <clr-dg-row *clrDgItems="let sp of stockPrices" [clrDgItem]="sp">

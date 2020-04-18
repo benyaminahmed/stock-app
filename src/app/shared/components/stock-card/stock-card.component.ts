@@ -77,7 +77,8 @@ export class StockCardComponent implements OnInit {
       series: [{
         name: 'Volume',
         data,
-        type: 'column'
+        type: 'column',
+        color: chartColours.teal
       }]
     };
   }
