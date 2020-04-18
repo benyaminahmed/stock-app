@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { map } from 'rxjs/internal/operators/map';
 
@@ -12,10 +12,10 @@ import { AlphaVantageService } from '../../services/alpha-vantage.service';
 })
 export class CompanyComponent implements OnInit {
 
+  @Input() searchInput?: string;
   @Output() outputLoadCompanies: EventEmitter<Company[]> = new EventEmitter<Company[]>();
   @Output() outputSearchInput: EventEmitter<string> = new EventEmitter<string>();
 
-  searchInput: string;
   searchForm: FormGroup;
   loading = false;
   companies: Company[];
@@ -24,18 +24,27 @@ export class CompanyComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.searchForm = new FormGroup({
-      searchCtrl: new FormControl('')
+      searchCtrl: new FormControl(this.searchInput ? this.searchInput : '')
     });
+
+    if (this.searchInput) {
+      this.getCompanies(this.searchInput);
+    }
   }
 
   onChangeSearchInput(e) {
     this.searchInput = e.currentTarget.value;
     this.outputSearchInput.emit(this.searchInput);
+    this.getCompanies(this.searchInput);
+  }
+
+  getCompanies(searchInput: string): void {
     this.companies = null;
     this.loading = true;
     this.alphaVantageSvc
-      .getCompanies(this.searchInput)
+      .getCompanies(searchInput)
       .pipe(
         map(res => {
           this.companies = this.mapCompanies(res);

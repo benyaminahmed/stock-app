@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as Highcharts from 'highcharts';
 
 import { Company } from '../shared/models/company';
@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   companies: Company[];
   searchInput: string;
 
-  constructor(public activatedRoute: ActivatedRoute) { }
+  constructor(public activatedRoute: ActivatedRoute, private router: Router) { }
 
 
   ngOnInit(): void {
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
   }
 
   onOutputSearchInput(event) {
-    console.log(event);
+    this.router.navigate(['home', event]);
   }
 }
 

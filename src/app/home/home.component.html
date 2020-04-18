@@ -1,6 +1,7 @@
 <app-title title="Home"></app-title>
 
-<app-company (outputLoadCompanies)="onOutputLoadCompanies($event)" (outputSearchInput)="onOutputSearchInput($event)">
+<app-company [searchInput]="searchInput" (outputLoadCompanies)="onOutputLoadCompanies($event)"
+             (outputSearchInput)="onOutputSearchInput($event)">
 </app-company>
 
 <div *ngIf="companies">
