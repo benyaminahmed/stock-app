@@ -12,6 +12,10 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
+    path: 'home/:searchInput',
+    component: HomeComponent
+  },
+  {
     path: 'time-series-daily/:symbol/:name/:region',
     component: TimeSeriesDailyComponent
   },

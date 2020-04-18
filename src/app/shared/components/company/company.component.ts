@@ -12,8 +12,8 @@ import { AlphaVantageService } from '../../services/alpha-vantage.service';
 })
 export class CompanyComponent implements OnInit {
 
-  @Output() outputLoadCompanies: EventEmitter<Company[]> =
-    new EventEmitter<Company[]>();
+  @Output() outputLoadCompanies: EventEmitter<Company[]> = new EventEmitter<Company[]>();
+  @Output() outputSearchInput: EventEmitter<string> = new EventEmitter<string>();
 
   searchInput: string;
   searchForm: FormGroup;
@@ -31,6 +31,7 @@ export class CompanyComponent implements OnInit {
 
   onChangeSearchInput(e) {
     this.searchInput = e.currentTarget.value;
+    this.outputSearchInput.emit(this.searchInput);
     this.companies = null;
     this.loading = true;
     this.alphaVantageSvc

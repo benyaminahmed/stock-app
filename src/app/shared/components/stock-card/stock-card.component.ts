@@ -1,7 +1,9 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { color } from 'highcharts';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 
+import { chartColours } from '../../helpers/colour';
 import { StockPrice } from '../../models/stock-price';
 import { HighchartsService } from '../../services/highcharts.service';
 
@@ -64,17 +66,18 @@ export class StockCardComponent implements OnInit {
   public ngOnInit(): void {
     const prices = _.take(_.orderBy(this.stockPrices, ['date'], ['desc']), 7);
 
-    const createChartSeries = (type) => {
+    const createChartSeries = (type, colour) => {
       this.chartOptions.series.push({
         name: type,
-        data: []
+        data: [],
+        color: colour
       });
     };
 
-    createChartSeries('Open');
-    createChartSeries('Close');
-    createChartSeries('High');
-    createChartSeries('Low');
+    createChartSeries('Open', chartColours.blue);
+    createChartSeries('Close', chartColours.red);
+    createChartSeries('High', chartColours.green);
+    createChartSeries('Low', chartColours.purple);
 
     for (let i = 0; i < prices.length; i++) {
       const mmt = moment(prices[i].date).toDate();

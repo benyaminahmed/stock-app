@@ -12,13 +12,13 @@ import { AlphaVantageService } from '../shared/services/alpha-vantage.service';
 })
 export class TimeSeriesDailyComponent implements OnInit {
 
-  constructor(private alphaVantageSvc: AlphaVantageService, public activatedRoute: ActivatedRoute) { }
-
   stockPrices: StockPrice[];
   symbol: string;
   companyName: string;
   region: string;
   loading: boolean;
+
+  constructor(private alphaVantageSvc: AlphaVantageService, public activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -60,7 +60,9 @@ export class TimeSeriesDailyComponent implements OnInit {
           const high = parseInt(value['2. high'], 10);
           const low = parseInt(value['3. low'], 10);
           const close = parseInt(value['4. close'], 10);
-          const volume = parseInt(value['5. volume'], 10); res.push({
+          const volume = parseInt(value['5. volume'], 10);
+
+          res.push({
             date: new Date(date),
             open,
             high,
