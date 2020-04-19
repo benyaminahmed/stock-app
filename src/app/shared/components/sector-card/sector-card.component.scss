@@ -7,17 +7,18 @@
 
 .card-media-description {
     margin-top: 5px;
-    font-size: 18px;
+    font-size: 36px;
     color: $positive;
+    margin-left: 0px !important;
 }
 
 .card-media-title {
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .icon {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     color: $brand-green;
     margin-left: -5px;
     margin: -2px 5px 0 0;
@@ -29,9 +30,9 @@
 
 .up-down {
     color: $positive;
-    margin-top: -6px;
 }
 
 .card-header {
     color: $brand-green;
+    font-size: 20px;
 }
