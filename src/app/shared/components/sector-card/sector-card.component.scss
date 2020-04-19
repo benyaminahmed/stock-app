@@ -1,0 +1,37 @@
+@import 'colours';
+
+
+.clr-row {
+    width: 600px;
+}
+
+.card-media-description {
+    margin-top: 5px;
+    font-size: 18px;
+    color: $positive;
+}
+
+.card-media-title {
+    font-size: 20px;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    color: $brand-green;
+    margin-left: -5px;
+    margin: -2px 5px 0 0;
+}
+
+.card {
+    border-top: 4px solid $brand-green;
+}
+
+.up-down {
+    color: $positive;
+    margin-top: -6px;
+}
+
+.card-header {
+    color: $brand-green;
+}
