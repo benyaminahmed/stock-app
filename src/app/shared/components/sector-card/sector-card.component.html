@@ -1,19 +1,16 @@
-<div class="clr-row">
-    <div class="clr-col-3">
-        <div class="card">
-            <div class="card-header">
-                <clr-icon class="icon" shape="computer"></clr-icon>
-                Technology
-            </div>
-            <div class="card-block">
-                <div class="card-media-block">
-                    <div class="card-media-description">
-                        <span class="card-media-title">
-                            <clr-icon class="up-down" size="17" shape="circle-arrow"></clr-icon>
-                            +100%
-                        </span>
-                    </div>
-                </div>
+<div *ngIf="sector" class="card">
+    <div class="card-header">
+        <clr-icon class="icon" shape="computer"></clr-icon>
+        {{sector.name}}
+    </div>
+    <div class="card-block">
+        <div class="card-media-block">
+            <div class="card-media-description">
+                <span class="card-media-title">
+                    <clr-icon class="up-down" size="17" shape="circle-arrow"></clr-icon>
+                    {{sector.value}}
+                </span>
             </div>
         </div>
     </div>
+</div>

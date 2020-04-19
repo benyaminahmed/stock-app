@@ -20,4 +20,8 @@ export class AlphaVantageService {
     return this.http.get<any[]>(`${this.rootUrl}?function=SYMBOL_SEARCH&keywords=${symbol}&apikey=${environment.alphaVantageApiKey}`);
   }
 
+  getSectors(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.rootUrl}?function=SECTOR&apikey=${environment.alphaVantageApiKey}`);
+  }
+
 }

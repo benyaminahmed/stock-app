@@ -1,4 +1,11 @@
 <app-title title="Sectors"></app-title>
 
-<app-sector-card>
-</app-sector-card>
+<app-spinner [loading]="loading"></app-spinner>
+
+<div *ngIf="!loading">
+    <div class="clr-row">
+        <div class="clr-col-4" *ngFor="let s of sectors">
+            <app-sector-card [sector]="s"></app-sector-card>
+        </div>
+    </div>
+</div>
