@@ -8,6 +8,11 @@ import { TimeSeriesDailyComponent } from './time-series-daily/time-series-daily.
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
     path: 'home',
     component: HomeComponent
   },
