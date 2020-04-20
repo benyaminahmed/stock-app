@@ -1,6 +1,6 @@
 <div *ngIf="sector" class="card">
-    <div class="card-header">
-        <clr-icon class="icon" [attr.shape]="icon"></clr-icon>
+    <div class="card-header" [ngStyle]="{'border-top': '4px solid' + colour}" [style.color]="colour">
+        <clr-icon class="icon" [attr.shape]="icon" [style.color]="colour"></clr-icon>
         {{sector.name}}
     </div>
     <div class="card-block">
