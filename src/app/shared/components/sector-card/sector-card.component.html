@@ -1,6 +1,6 @@
 <div *ngIf="sector" class="card">
     <div class="card-header">
-        <clr-icon class="icon" shape="computer"></clr-icon>
+        <clr-icon class="icon" [attr.shape]="icon"></clr-icon>
         {{sector.name}}
     </div>
     <div class="card-block">
