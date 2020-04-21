@@ -3,12 +3,23 @@
 .card-media-description {
     margin-top: 5px;
     font-size: 36px;
-    color: $positive;
     margin-left: 0px !important;
+
+    &.positive {
+        color: $positive;
+    }
+
+    &.negative {
+        color: $negative;
+    }
 }
 
 .card-media-title {
     font-size: 15px;
+}
+
+.card {
+    border-top: solid black 3px;
 }
 
 .icon {
@@ -18,9 +29,14 @@
     margin: -2px 5px 0 0;
 }
 
-
-.up-down {
+clr-icon[shape="circle-arrow"] {
     color: $positive;
+
+}
+
+clr-icon[shape="circle-arrow down"] {
+    color: $negative;
+
 }
 
 .card-header {

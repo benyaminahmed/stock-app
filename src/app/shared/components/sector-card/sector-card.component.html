@@ -1,13 +1,14 @@
 <div *ngIf="sector" class="card">
-    <div class="card-header" [ngStyle]="{'border-top': '4px solid' + colour}" [style.color]="colour">
+    <div class="card-header">
         <clr-icon class="icon" [attr.shape]="icon" [style.color]="colour"></clr-icon>
         {{sector.name}}
     </div>
     <div class="card-block">
         <div class="card-media-block">
-            <div class="card-media-description">
+            <div class="card-media-description" [ngClass]="movement">
                 <span class="card-media-title">
-                    <clr-icon class="up-down" size="17" shape="circle-arrow"></clr-icon>
+                    <clr-icon size="17" [attr.shape]="movement === 'positive' ? 'circle-arrow' : 'circle-arrow down'">
+                    </clr-icon>
                     {{sector.value}}
                 </span>
             </div>

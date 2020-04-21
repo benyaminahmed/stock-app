@@ -15,10 +15,15 @@ export class SectorCardComponent implements OnInit {
 
   icon: string;
   colour: string;
+  movement: 'negative' | 'positive';
+
+  getMovement() {
+    return this.sector.value.startsWith('-') ? 'negative' : 'positive';
+  }
 
   ngOnInit(): void {
     this.icon = sectorIcons[this.sector.name];
     this.colour = sectorColours[this.sector.name];
+    this.movement = this.getMovement();
   }
-
 }
