@@ -4,6 +4,10 @@
     --clr-header-bg-color: black;
 }
 
+.card {
+    border-top: 2px black solid;
+}
+
 .company-logo {
     background-image: url('/assets/img/logo.jpg');
     width: 100px;

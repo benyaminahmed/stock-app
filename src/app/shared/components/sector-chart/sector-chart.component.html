@@ -1,0 +1,11 @@
+<div class="card">
+    <div class="card-header">
+        Compare Sectors
+    </div>
+    <div class="card-block">
+
+        <highcharts-chart *ngIf="chartOptions" [Highcharts]="Highcharts" style="width: 100%; display: block;"
+                          [options]="chartOptions">
+        </highcharts-chart>
+    </div>
+</div>
