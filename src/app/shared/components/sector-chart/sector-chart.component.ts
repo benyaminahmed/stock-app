@@ -20,9 +20,9 @@ export class SectorChartComponent implements OnInit {
 
   ngOnInit(): void {
     const series = [];
-    const categories = this.sectors.map(x => x.name);
+    const sectors = this.sectors.map(x => x.name);
 
-    categories.forEach(c => {
+    sectors.forEach(c => {
       const data = [];
       data.push(parseFloat(this.sectors.find(s => s.name === c).value));
       series.push({
@@ -32,7 +32,7 @@ export class SectorChartComponent implements OnInit {
       });
     });
 
-    this.buildChart(series, categories);
+    this.buildChart(series, ['Sector']);
   }
 
   buildChart(series, categories): void {
@@ -45,7 +45,6 @@ export class SectorChartComponent implements OnInit {
       },
       yAxis: {
         visible: false,
-        gridLineWidth: 0,
         title: {
           text: null
         }
@@ -53,7 +52,6 @@ export class SectorChartComponent implements OnInit {
       xAxis: {
         categories,
         visible: false,
-        gridLineWidth: 0,
         title: {
           text: null
         }
@@ -61,7 +59,11 @@ export class SectorChartComponent implements OnInit {
       plotOptions: {
         bar: {
           dataLabels: {
-            enabled: true
+            enabled: true,
+            crop: false,
+            formatter() {
+              return `<span>${this.y}%</span>`;
+            }
           }
         }
       },
