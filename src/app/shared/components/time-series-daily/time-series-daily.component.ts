@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { map } from 'rxjs/internal/operators/map';
 
-import { StockPrice } from '../shared/models/stock-price';
-import { AlphaVantageService } from '../shared/services/alpha-vantage.service';
+import { StockPrice } from '../../models/stock-price';
+import { AlphaVantageService } from '../../services/alpha-vantage.service';
 
 @Component({
   selector: 'app-time-series-daily',

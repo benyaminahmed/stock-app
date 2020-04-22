@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { SectorsComponent } from './sectors/sectors.component';
-import { TimeSeriesDailyComponent } from './time-series-daily/time-series-daily.component';
+import { TimeSeriesDailyComponent } from './shared/components/time-series-daily/time-series-daily.component';
 
 
 const routes: Routes = [
@@ -21,7 +21,7 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'time-series-daily/:symbol/:name/:region',
+    path: 'home/:symbol/time-series-daily/:name/:region',
     component: TimeSeriesDailyComponent
   },
   {
