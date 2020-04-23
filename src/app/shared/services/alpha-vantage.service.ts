@@ -24,4 +24,8 @@ export class AlphaVantageService {
     return this.http.get<any[]>(`${this.rootUrl}?function=SECTOR&apikey=${environment.alphaVantageApiKey}`);
   }
 
+  getTimeSeriesIntraday(symbol: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.rootUrl}?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=${environment.alphaVantageApiKey}`);
+  }
+
 }

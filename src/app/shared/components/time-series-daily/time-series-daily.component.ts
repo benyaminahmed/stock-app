@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { map } from 'rxjs/internal/operators/map';
 
+import { IntradayPrice } from '../../models/intraday-price';
 import { StockPrice } from '../../models/stock-price';
 import { AlphaVantageService } from '../../services/alpha-vantage.service';
 
@@ -17,6 +18,7 @@ export class TimeSeriesDailyComponent implements OnInit {
   companyName: string;
   region: string;
   loading: boolean;
+  intradayPrices: IntradayPrice[];
 
   constructor(private alphaVantageSvc: AlphaVantageService, public activatedRoute: ActivatedRoute) { }
 
@@ -25,11 +27,12 @@ export class TimeSeriesDailyComponent implements OnInit {
       this.symbol = params.symbol;
       this.companyName = params.name;
       this.region = params.region;
-      this.search(this.symbol);
+      this.getTimeSeriesDaily(this.symbol);
+      this.getIntradayPrices(this.symbol);
     });
   }
 
-  search(symbol: string) {
+  getTimeSeriesDaily(symbol: string) {
     this.stockPrices = null;
     this.loading = true;
     this.alphaVantageSvc
@@ -44,6 +47,25 @@ export class TimeSeriesDailyComponent implements OnInit {
           this.loading = false;
           console.log('error');
         });
+  }
+
+  getIntradayPrices(symbol: string) {
+    this.alphaVantageSvc
+      .getTimeSeriesIntraday(symbol)
+      .pipe(
+        map(res => {
+          console.log(res);
+        }))
+      .subscribe(
+        error => {
+          this.loading = false;
+          console.log('error');
+        });
+
+  }
+
+  mapIntradayPrices(data: any): IntradayPrice[] {
+    return null;
   }
 
   mapStockPrices(data: any): StockPrice[] {
