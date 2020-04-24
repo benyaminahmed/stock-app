@@ -19,6 +19,7 @@ export class TimeSeriesDailyComponent implements OnInit {
   region: string;
   loading: boolean;
   intradayPrices: IntradayPrice[];
+  series: 'Daily' | 'Intraday' = 'Daily';
 
   constructor(private alphaVantageSvc: AlphaVantageService, public activatedRoute: ActivatedRoute) { }
 
@@ -96,6 +97,10 @@ export class TimeSeriesDailyComponent implements OnInit {
       }
     }
     return res;
+  }
+
+  onClickChangeSeries(series: 'Daily' | 'Intraday') {
+    this.series = series;
   }
 }
 
