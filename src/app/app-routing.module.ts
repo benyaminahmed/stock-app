@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
+import { PricesComponent } from './prices/prices.component';
 import { SectorsComponent } from './sectors/sectors.component';
-import { TimeSeriesDailyComponent } from './shared/components/time-series-daily/time-series-daily.component';
 
 
 const routes: Routes = [
@@ -21,8 +21,8 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'home/:symbol/time-series-daily/:name/:region',
-    component: TimeSeriesDailyComponent
+    path: 'home/:symbol/prices/:name/:region',
+    component: PricesComponent
   },
   {
     path: 'sectors',

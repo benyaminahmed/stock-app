@@ -1,0 +1,60 @@
+<app-title title="{{symbol  | uppercase}} - {{companyName}}"></app-title>
+
+<app-spinner [loading]="loading"></app-spinner>
+
+<div *ngIf="!loading">
+
+    <div *ngIf="stockPrices">
+        <div>
+            <app-property-card title="Open" [value]="stockPrices[0].open" currency="$" colourClass="brand-blue">
+            </app-property-card>
+            <app-property-card title="High" [value]="stockPrices[0].high" currency="$" colourClass="brand-green">
+            </app-property-card>
+            <app-property-card title="Low" [value]="stockPrices[0].low" currency="$" colourClass="brand-purple">
+            </app-property-card>
+            <app-property-card title="Close" [value]="stockPrices[0].close" currency="$" colourClass="brand-red">
+            </app-property-card>
+            <app-property-card title="Volume" [value]="stockPrices[0].volume | number" colourClass="brand-teal">
+            </app-property-card>
+        </div>
+        <div class="btn-group">
+            <div class="radio btn">
+                <input type="radio" name="btn-group-series" [checked]="series === 'Daily'"
+                       (click)="onClickChangeSeries('Daily')" id="btn-daily">
+                <label for="btn-daily">Daily</label>
+            </div>
+            <div class="radio btn">
+                <input type="radio" name="btn-group-series" (click)="onClickChangeSeries('Intraday')"
+                       [checked]="series === 'Intraday'" id="btn-intraday">
+                <label for="btn-intraday">Intraday</label>
+            </div>
+        </div>
+
+        <div *ngIf="series === 'Daily'">
+            <app-time-series-daily [stockPrices]="stockPrices" [region]="region" [companyName]="companyName"
+                                   [symbol]="symbol">
+            </app-time-series-daily>
+        </div>
+        <div *ngIf="series === 'Intraday'">
+            <h1>Intraday works baby...</h1>
+        </div>
+    </div>
+
+
+    <div *ngIf="!stockPrices">
+        <div class="content-area, margin-no-stock">
+            <div class="alert alert-danger" role="alert">
+                <div class="alert-items">
+                    <div class="alert-item static">
+                        <div class="alert-icon-wrapper">
+                            <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                        </div>
+                        <span class="alert-text">
+                            We don't have any intraday prices for this stock.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
