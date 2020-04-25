@@ -9,7 +9,7 @@ import { SectorsComponent } from './sectors/sectors.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'home/MSFT',
     pathMatch: 'full'
   },
   {

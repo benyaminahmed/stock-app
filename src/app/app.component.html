@@ -8,7 +8,7 @@
       <router-outlet></router-outlet>
     </div>
     <clr-vertical-nav [clrVerticalNavCollapsible]="true" [clrVerticalNavCollapsed]="true">
-      <a class="one" clrVerticalNavLink routerLink="./home" routerLinkActive="active">
+      <a class="one" clrVerticalNavLink [routerLink]="['./home', 'MSFT']" routerLinkActive="active">
         <clr-icon clrVerticalNavIcon shape="home"></clr-icon>
         Home
       </a>
