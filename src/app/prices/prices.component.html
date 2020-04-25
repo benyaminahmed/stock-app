@@ -17,7 +17,8 @@
             <app-property-card title="Volume" [value]="stockPrices[0].volume | number" colourClass="brand-teal">
             </app-property-card>
         </div>
-        <div class="btn-group">
+        <!--TODO: Implement Intraday Prices-->
+        <div class="btn-group" style="display:none">
             <div class="radio btn">
                 <input type="radio" name="btn-group-series" [checked]="series === 'Daily'"
                        (click)="onClickChangeSeries('Daily')" id="btn-daily">
