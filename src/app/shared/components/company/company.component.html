@@ -1,6 +1,8 @@
 <form clrForm [formGroup]="searchForm">
-    <input class="search-bar" clrInput placeholder="Enter a company name" (change)="onChangeSearchInput($event)"
-           formControlName="searchCtrl" />
+    <clr-input-container>
+        <label>Company:</label>
+        <input clrInput (change)="onChangeSearchInput($event)" formControlName="searchCtrl" />
+    </clr-input-container>
 </form>
 
 <app-spinner [loading]="loading"></app-spinner>
