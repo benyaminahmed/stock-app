@@ -6,10 +6,6 @@
         <div class="card-title">
             {{region}} - {{symbol}} : ${{stockPrices[0].close}}
         </div>
-        <div class="card-text">
-            <clr-icon class="up-arrow" shape="arrow"></clr-icon>
-            +0.0100%
-        </div>
         <highcharts-chart *ngIf="chartOptions" [Highcharts]="Highcharts" style="width: 100%; display: block;"
                           [options]="chartOptions">
         </highcharts-chart>
