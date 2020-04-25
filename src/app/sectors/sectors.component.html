@@ -4,7 +4,7 @@
 
 <div *ngIf="!loading">
     <div class="clr-row">
-        <div class="clr-col-4" *ngFor="let s of sectors">
+        <div class="clr-col-sm-12 clr-col-xl-4" *ngFor="let s of sectors">
             <app-sector-card [sector]="s"></app-sector-card>
         </div>
     </div>
