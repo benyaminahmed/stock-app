@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { CompareComponent } from './compare/compare.component';
 import { HomeComponent } from './home/home.component';
 import { PricesComponent } from './prices/prices.component';
 import { SectorsComponent } from './sectors/sectors.component';
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
+  },
+  {
+    path: 'compare',
+    component: CompareComponent
   },
   {
     path: 'home/:searchInput',

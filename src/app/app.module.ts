@@ -20,6 +20,7 @@ import { StockCardComponent } from './shared/components/stock-card/stock-card.co
 import { TimeSeriesDailyComponent } from './shared/components/time-series-daily/time-series-daily.component';
 import { TitleComponent } from './shared/components/title/title.component';
 import { PricesComponent } from './prices/prices.component';
+import { CompareComponent } from './compare/compare.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PricesComponent } from './prices/prices.component';
     SectorsComponent,
     SectorCardComponent,
     SectorChartComponent,
-    PricesComponent
+    PricesComponent,
+    CompareComponent
   ],
   imports: [
     BrowserModule,
