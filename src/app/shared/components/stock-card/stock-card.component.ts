@@ -74,6 +74,9 @@ export class StockCardComponent implements OnInit {
           text: 'Volume'
         }
       },
+      credits: {
+        enabled: false
+      },
       series: [{
         name: 'Volume',
         data,
@@ -111,6 +114,9 @@ export class StockCardComponent implements OnInit {
         dateTimeLabelFormats: {
           month: '%e. %b',
         },
+      },
+      credits: {
+        enabled: false
       },
       responsive: {
         rules: [{

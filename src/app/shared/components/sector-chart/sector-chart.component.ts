@@ -49,6 +49,9 @@ export class SectorChartComponent implements OnInit {
           text: null
         }
       },
+      credits: {
+        enabled: false
+      },
       xAxis: {
         categories,
         visible: false,
