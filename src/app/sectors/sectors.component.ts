@@ -34,11 +34,13 @@ export class SectorsComponent implements OnInit {
     if (data) {
 
       const sectorsResponse = data['Rank A: Real-Time Performance'];
-      for (const [key, value] of Object.entries(sectorsResponse)) {
-        sectors.push({
-          name: key,
-          value
-        } as Sector);
+      if (sectorsResponse) {
+        for (const [key, value] of Object.entries(sectorsResponse)) {
+          sectors.push({
+            name: key,
+            value
+          } as Sector);
+        }
       }
     }
 

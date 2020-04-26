@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { forkJoin } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
 
 import { IntradayPrice } from '../shared/models/intraday-price';
@@ -29,42 +30,31 @@ export class PricesComponent implements OnInit {
       this.symbol = params.symbol;
       this.companyName = params.name;
       this.region = params.region;
-      this.getTimeSeriesDaily(this.symbol);
-      this.getIntradayPrices(this.symbol);
+      this.getPrices(this.symbol);
     });
   }
 
-  getTimeSeriesDaily(symbol: string) {
+  getPrices(symbol: string): void {
+
     this.stockPrices = null;
     this.loading = true;
-    this.alphaVantageSvc
-      .getTimeSeriesDaily(symbol)
-      .pipe(
-        map(res => {
-          this.stockPrices = this.mapStockPrices(res);
-          this.loading = false;
-        }))
-      .subscribe(() => {
-        this.loading = false;
-      },
-        error => {
-          console.log(error);
-        });
-  }
 
-  getIntradayPrices(symbol: string) {
-    this.alphaVantageSvc
-      .getTimeSeriesIntraday(symbol)
+    const getTimeSeriesDaily = this.alphaVantageSvc.getTimeSeriesDaily(symbol);
+    const getTimeSeriesIntraday = this.alphaVantageSvc.getTimeSeriesIntraday(symbol);
+
+    forkJoin([getTimeSeriesDaily, getTimeSeriesIntraday])
       .pipe(
         map(res => {
-          console.log(res);
+          this.stockPrices = this.mapStockPrices(res[0]);
+          console.log(res[1]);
         }))
       .subscribe(() => {
         this.loading = false;
       },
         error => {
           console.log(error);
-        });
+        }
+      );
   }
 
   mapIntradayPrices(data: any): IntradayPrice[] {
