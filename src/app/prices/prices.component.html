@@ -5,17 +5,28 @@
 <div *ngIf="!loading">
 
     <div *ngIf="stockPrices">
-        <div>
-            <app-property-card title="Open" [value]="stockPrices[0].open" currency="$" colourClass="brand-blue">
-            </app-property-card>
-            <app-property-card title="High" [value]="stockPrices[0].high" currency="$" colourClass="brand-green">
-            </app-property-card>
-            <app-property-card title="Low" [value]="stockPrices[0].low" currency="$" colourClass="brand-purple">
-            </app-property-card>
-            <app-property-card title="Close" [value]="stockPrices[0].close" currency="$" colourClass="brand-red">
-            </app-property-card>
-            <app-property-card title="Volume" [value]="stockPrices[0].volume | number" colourClass="brand-teal">
-            </app-property-card>
+
+        <div class="clr-row">
+            <div class="clr-col-12 clr-col-md-2">
+                <app-property-card title="Open" [value]="stockPrices[0].open" currency="$" colourClass="brand-blue">
+                </app-property-card>
+            </div>
+            <div class="clr-col-12 clr-col-md-2">
+                <app-property-card title="High" [value]="stockPrices[0].high" currency="$" colourClass="brand-green">
+                </app-property-card>
+            </div>
+            <div class="clr-col-12 clr-col-md-2">
+                <app-property-card title="Low" [value]="stockPrices[0].low" currency="$" colourClass="brand-purple">
+                </app-property-card>
+            </div>
+            <div class="clr-col-12 clr-col-md-2">
+                <app-property-card title="Close" [value]="stockPrices[0].close" currency="$" colourClass="brand-red">
+                </app-property-card>
+            </div>
+            <div class="clr-col-12 clr-col-md-2">
+                <app-property-card title="Volume" [value]="stockPrices[0].volume | number" colourClass="brand-teal">
+                </app-property-card>
+            </div>
         </div>
         <!--TODO: Implement Intraday Prices-->
         <div class="btn-group" style="display:none">

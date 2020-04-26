@@ -3,10 +3,28 @@
 <app-spinner [loading]="loading"></app-spinner>
 
 <div *ngIf="!loading">
-    <div class="clr-row">
-        <div class="clr-col-sm-12 clr-col-xl-4" *ngFor="let s of sectors">
-            <app-sector-card [sector]="s"></app-sector-card>
+    <div *ngIf="sectors && sectors.length > 0">
+        <div class="clr-row">
+            <div class="clr-col-sm-12 clr-col-xl-4" *ngFor="let s of sectors">
+                <app-sector-card [sector]="s"></app-sector-card>
+            </div>
+        </div>
+        <app-sector-chart [sectors]="sectors"></app-sector-chart>
+    </div>
+    <div *ngIf="!sectors || sectors.length === 0">
+        <div class="content-area, margin-no-stock">
+            <div class="alert alert-danger" role="alert">
+                <div class="alert-items">
+                    <div class="alert-item static">
+                        <div class="alert-icon-wrapper">
+                            <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                        </div>
+                        <span class="alert-text">
+                            We dont have any Sector details.
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <app-sector-chart [sectors]="sectors"></app-sector-chart>
 </div>
