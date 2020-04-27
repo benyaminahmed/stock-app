@@ -12,14 +12,28 @@
   <body>
     <app-root></app-root>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="/__/firebase/7.14.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="/__/firebase/7.14.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
 
-    <!-- Initialize Firebase -->
-    <script src="/__/firebase/init.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCIjhSRSAt-Or8Bwf66iIWFVfvC5KtbmIU",
+        authDomain: "nexus-92b73.firebaseapp.com",
+        databaseURL: "https://nexus-92b73.firebaseio.com",
+        projectId: "nexus-92b73",
+        storageBucket: "nexus-92b73.appspot.com",
+        messagingSenderId: "1013282653366",
+        appId: "1:1013282653366:web:64416a649047995c635217",
+        measurementId: "G-WQMLXTP86N"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
   </body>
 
 </html>
