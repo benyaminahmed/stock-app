@@ -1,1 +1,23 @@
 <app-title title="Compare"></app-title>
+
+<form clrForm [formGroup]="tickerForm">
+
+    <div class="clr-row">
+        <div class="clr-col-2">
+            <clr-input-container>
+                <input clrInput formControlName="tickerCtrl" />
+            </clr-input-container>
+        </div>
+        <div class="clr-col-1">
+
+            <button class="btn btn-sm btn-link" (click)="onClickAddTicker()">
+                <clr-icon shape="plus"></clr-icon>
+            </button>
+
+        </div>
+
+    </div>
+</form>
+<div *ngIf="tickers.length>0">
+    <span class="badge badge-black" *ngFor="let t of tickers">{{t}}</span>
+</div>
