@@ -5,15 +5,8 @@
     <div class="clr-row">
         <div class="clr-col-2">
             <clr-input-container>
-                <input clrInput formControlName="tickerCtrl" />
+                <input clrInput formControlName="tickerCtrl" (keyup.enter)="onEnterAddTicker()" />
             </clr-input-container>
-        </div>
-        <div class="clr-col-1">
-
-            <button class="btn btn-sm btn-link" (click)="onClickAddTicker()">
-                <clr-icon shape="plus"></clr-icon>
-            </button>
-
         </div>
 
     </div>
