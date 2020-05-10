@@ -23,8 +23,10 @@ export class CompareComponent implements OnInit {
 
   onClickAddTicker(): void {
     if (this.tickerForm.controls.tickerCtrl.value) {
-      this.tickers.push(this.tickerForm.controls.tickerCtrl.value.toUpperCase());
+      const value = this.tickerForm.controls.tickerCtrl.value.toUpperCase();
+      if (!this.tickers.find(v => v === value)) {
+        this.tickers.push(value);
+      }
     }
-
   }
 }
