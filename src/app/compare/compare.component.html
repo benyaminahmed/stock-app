@@ -13,4 +13,11 @@
 </form>
 <div *ngIf="tickers.length>0">
     <span class="badge badge-black" *ngFor="let t of tickers">{{t}}</span>
+
+</div>
+<div *ngIf="tickers.length>1">
+    <button type="button" class="btn btn-icon" aria-label="home">
+        <clr-icon shape="add"></clr-icon>
+    </button>
+
 </div>
